@@ -1,0 +1,22 @@
+/** {
+  border: 1px solid black;
+}*/
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  overflow: hidden;
+}
+
+header {
+  display: block;
+  text-align: center;
+  margin: auto;
+}
+
+h1 {
+  text-transform: uppercase;
+}
