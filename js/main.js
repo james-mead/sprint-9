@@ -1,16 +1,21 @@
-$(document).ready(function() {
-document.addEventListener('mousemove', newCircle)
-document.addEventListener("keydown", keyCheck);  //or however you are calling your method
+$(document).ready(start)
 
-// global variables
-// var numItems = Math.floor(Math.random() * 2000);
-var content = $('#content');
-// var content = $('#circles')
+function start() {
+  $(document).on('mousemove', newCircle);
+  $(document).on('keydown', keyCheck);
+
+  var content = $('#content');
+
+  // Create an audio element, so we don't have to keep making new ones
+  var deleteSound = $('<audio>', {
+    src: 'sounds/blop.mp3',
+    volume: 0.3
+  })
+}
 
 function newCircle() {
-  var node = document.createElement('div')
-  content.append(node)
-  node.classList.add('circle')
+  var node = $('<div>', { 'class': 'circle' });
+  content.append(node);
   setRandomPosition(node);
   setSize(node);
   setRandomColor(node);
@@ -19,23 +24,16 @@ function newCircle() {
 function keyCheck(event)
 {
    var KeyID = event.keyCode;
-   switch(KeyID)
-   {
+   switch(KeyID) {
       case 8:
-        removeLastCircle();
-        circleSound();
-      break;
       case 46:
         removeLastCircle();
         circleSound();
-      break;
-      default:
-      break;
    }
 }
 
 function removeLastCircle() {
-  $('.circle').last().remove()
+  $('.circle').last().remove();
 }
 
 function setRandomPosition(target) {
@@ -56,9 +54,6 @@ function setRandomColor(target) {
 }
 
 function circleSound() {
-  var winFX = new Audio('sounds/blop.mp3');
-  winFX.volume = 0.3;
-  winFX.play();
+  deleteSound.play()
 }
 
-})
