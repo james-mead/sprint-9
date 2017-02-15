@@ -4,21 +4,18 @@ function start() {
   $(document).on('mousemove', newCircle);
   $(document).on('keydown', keyCheck);
 
-  var content = $('#content');
-
-  // Create an audio element, so we don't have to keep making new ones
-  var deleteSound = $('<audio>', {
+  $('body').append($('<audio />', {
     src: 'sounds/blop.mp3',
     volume: 0.3
-  })
+  }))
 }
 
 function newCircle() {
-  var node = $('<div>', { 'class': 'circle' });
-  content.append(node);
+  var node = $('<div />', { 'class': 'circle' });
   setRandomPosition(node);
   setSize(node);
   setRandomColor(node);
+  $('#content').append($(node));
 }
 
 function keyCheck(event)
@@ -54,6 +51,6 @@ function setRandomColor(target) {
 }
 
 function circleSound() {
-  deleteSound.play()
+  $('audio').get(0).play()
 }
 
